@@ -204,7 +204,7 @@ class RMLtoSHACL:
         self.helpAddTriples(shacl_graph, sh_property,
                             self.shaclNS.path, pm.po_dict.get(self.RML.CONSTANT))
 
-    def writeShapeToFile(self, file_name, shape_dir="shapes/"):
+    def writeShapeToFile(self, file_name, shape_dir="generated-shapes/"):
         for prefix, ns in self.RML.graph.namespaces():
             self.SHACL.graph.bind(prefix, ns)
             # @base is used for <> in the RML ttl graph
@@ -233,12 +233,12 @@ class RMLtoSHACL:
                 self.transformPOM(subject_shape_node, pom, self.SHACL.graph)
 
         outputfileName = f"{rml_mapping_file}-output-shape.ttl"
-        self.writeShapeToFile(outputfileName)
+        self.writeShapeToFile(outputfileName.replace("mapping-rules/", ""))
 
-        validation_shape_graph = rdflib.Graph()
-        validation_shape_graph.parse("shacl-shacl.ttl", format="turtle")
+        #validation_shape_graph = rdflib.Graph()
+        #validation_shape_graph.parse("shacl-shacl.ttl", format="turtle")
 
-        self.SHACL.Validation(validation_shape_graph, self.SHACL.graph)
+        #self.SHACL.Validation(validation_shape_graph, self.SHACL.graph)
 
         logging.debug("*" * 100)
         logging.debug("RESULTS")
