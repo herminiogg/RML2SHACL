@@ -28,12 +28,12 @@ if __name__ == "__main__":
         raise ValueError('Invalid log level: %s' % loglevel)
     logging.basicConfig(level=numeric_level)
 
-    start = time.time()
+    #start = time.time()
     if args.MAPPING_FILE is None:
         exit()
     else:
         RtoS.evaluate_file(args.MAPPING_FILE)
 
-    end = time.time()
+    #end = time.time()
 
-    print(f"Elapsed time: {end - start} seconds")
+    #print(f"Elapsed time: {end - start} seconds")
